@@ -1,0 +1,12 @@
+[
+    { "id": 1, "name": "Consequatur asperiores", "slug": "exercitationem-necessitatibus", "img": "item-7.jpg" },
+    { "id": 2, "name": "Aut id", "slug": "aut-voluptatum", "img": "item-4.jpg" },
+    { "id": 3, "name": "Quisquam laboriosam", "slug": "est-ut", "img": "item-10.jpg" },
+    { "id": 4, "name": "Quo soluta", "slug": "ad-error", "img": "item-18.jpg" },
+    { "id": 5, "name": "Voluptatibus ut", "slug": "vero-quibusdam", "img": "item-15.jpg" },
+    { "id": 6, "name": "Quisquam a", "slug": "officia-in", "img": "item-7.jpg" },
+    { "id": 7, "name": "Dolorem non", "slug": "culpa-nihil", "img": "item-5.jpg" },
+    { "id": 8, "name": "Recusandae a", "slug": "aspernatur-dolor", "img": "item-11.jpg" },
+    { "id": 9, "name": "Consequatur in", "slug": "accusantium-fugit", "img": "item-18.jpg" },
+    { "id": 10, "name": "Et dolores", "slug": "repellendus-placeat", "img": "item-13.jpg" }
+]
