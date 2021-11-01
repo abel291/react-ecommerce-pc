@@ -3,6 +3,7 @@ import BannerSection from "../../components/BannerSection"
 
 import ListCardProducts from "../../components/ListCardProducts"
 import OnLoadingPage from "../../components/OnLoadingPage"
+import PageError from "../../components/PageError"
 import TitlePage from "../../components/TitlePage"
 import usePage from "../../hooks/usePage"
 
@@ -11,7 +12,7 @@ const Combos = () => {
 
     if (isLoading) return <OnLoadingPage />
 
-    if (error) return "An error has occurred: " + error.message
+    if (error) return <PageError />
     return (
         <div className="container">
             <div className="py-content ">

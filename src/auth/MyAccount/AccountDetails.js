@@ -3,7 +3,7 @@ import Button from "../../components/Button"
 
 import { useState } from "react"
 
-import ValidaterErrors from "../../components/ValidateError"
+
 import Notifications from "../../components/Notifications"
 import useAuth from "../../hooks/useAuth"
 const AccountDetails = () => {
@@ -39,11 +39,11 @@ setNotifications({
                     title: "Operacion exitosa",
                 })
             },
-            onError: (data, variables, context) => {
+            onError: (error, variables, context) => {
                 setNotifications({
                     ...notification,
                     type: "error",
-                    errors: ValidaterErrors(data.response), //return array
+                    responseError: error,
                 })
             },
         })
@@ -84,7 +84,7 @@ setNotifications({
                         <InputLabel onChange={handleChangle} name="country" value={dataUser.country} label={"Pais *"} />
                     </div>
                 </div>
-                <Button isLoading={updateUser.isLoading} >Guardar</Button>
+                <Button isLoading={updateUser.isLoading}>Guardar</Button>
             </form>
         </div>
     )

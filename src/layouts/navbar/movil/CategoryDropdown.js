@@ -6,13 +6,11 @@ import { useData } from "../../../hooks/useData"
 
 const CategoryDropdown = ({closeParent}) => {
     
-    const {
-        data: { categories },
-    } = useData()
+    const {isLoading,error,data} = useData()
 
-    if (categories.isLoading) return <SpinnerLoad />
+    if (isLoading) return <SpinnerLoad />
 
-    if (categories.error) return "error"
+    if (error) return "error"
     return (
         <Disclosure className="">
             {({ open }) => (
@@ -24,7 +22,7 @@ const CategoryDropdown = ({closeParent}) => {
                     </Disclosure.Button>
                     
                     <Disclosure.Panel className="px-3">
-                        {categories.map((category) => (
+                    {data.categories.map((category) => (
                             <NavLink
                                 to={{
                                     pathname: "/search",

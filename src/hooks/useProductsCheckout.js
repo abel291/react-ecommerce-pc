@@ -14,7 +14,7 @@ export const useMutationProductsCheckout = (product) => {
 
     return useMutation(
         async (product) => {
-            const response = await apiClient.post("api/product-checkout", product)
+            const response = await apiClient.post("/product-checkout", product)
             return response
         },
         {
@@ -33,7 +33,7 @@ export const useAddProductsToCheckout = (product) => {
 
     return useMutation(
         async () => {
-            const response = await apiClient.get("api/product-checkout-cart")
+            const response = await apiClient.get("/product-checkout-cart")
             return response
         },
         {

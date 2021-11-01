@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import CarouselBanners from "../../components/CarouselBanners"
 import ListCardProducts from "../../components/ListCardProducts"
 import OnLoadingPage from "../../components/OnLoadingPage"
+import PageError from "../../components/PageError"
 import TitlePage from "../../components/TitlePage"
 import usePage from "../../hooks/usePage"
 
@@ -12,12 +13,12 @@ const Assemblies = () => {
 
     if (isLoading) return <OnLoadingPage />
 
-    if (error) return "An error has occurred: " + error.message
+    if (error) return <PageError />
 
     return (
         <div className="container">
             <div className="py-content">
-                {/* <CarouselBanners images={assemblies.banners} path="/img/assemblies/" /> */}
+                <CarouselBanners images={assemblies.banners} path="/img/assemblies/" />
             </div>
             <TitlePage
                 title="Ensambles"

@@ -2,17 +2,26 @@ import { Transition } from "@headlessui/react"
 
 import { CheckCircleIcon, XCircleIcon, XIcon } from "@heroicons/react/solid"
 import { useEffect, useState } from "react"
-const Notifications = ({ type = "hidden", errors, title = "Operacion exitosa", subTitle = "", scrollUp = true }) => {
+import ValidaterErrors from "./ValidateError"
+const Notifications = ({ responseError="", type = "hidden", errors, title = "Operacion exitosa", subTitle = "", scrollUp = true }) => {
     const [show, setShow] = useState(false)
+    const [error, setError] = useState(null)
+    
+    
     useEffect(() => {
+        
         if (type === "ok" || type === "error") {
             setShow(true)
-            if (scrollUp) {
-                document.getElementById("root").scrollIntoView({ behavior: "smooth" })
+            // if (scrollUp) {
+            //     document.getElementById("root").scrollIntoView({ behavior: "smooth" })
+            // }
+            if(responseError){
+                setError(ValidaterErrors(responseError.response))
             }
+           
         }
 
-    }, [type,scrollUp])
+    }, [type,scrollUp,responseError])
     return (
         <Transition
             show={show}
@@ -48,7 +57,7 @@ const Notifications = ({ type = "hidden", errors, title = "Operacion exitosa", s
                     <div className="px-4 flex-grow">
                         <span className="text-red-700 font-semibold">Tienes Errores por revisar </span>
                         <ul className="list-disc text-red-600 list-inside">
-                            {Array.isArray(errors) ? errors.map((msg, i) => <li key={i}>{msg}</li>) : <li>{errors}</li>}
+                            {Array.isArray(error) ? error.map((msg, i) => <li key={i}>{msg}</li>) : <li>{error}</li>}
                         </ul>
                     </div>
                     <div>

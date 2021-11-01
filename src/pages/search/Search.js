@@ -15,6 +15,7 @@ import FilterRadio from "./FilterRadio"
 
 import { useQuery } from "react-query"
 import { useData } from "../../hooks/useData"
+import PageError from "../../components/PageError"
 
 const offers = [
     {
@@ -163,7 +164,7 @@ const Search = () => {
 
     const fecthSearchProducts = async () => {
         const response = await apiClient
-            .get("api/search", {
+            .get("/search", {
                 params: {
                     ...filtersNoEmpty,
                 },
@@ -186,7 +187,7 @@ const Search = () => {
 
     if (products === undefined) return <OnLoadingPage />
 
-    if (error) return "An error has occurred: " + error.message
+    if (error) return <PageError />
 
     return (
         <div className="container ">

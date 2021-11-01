@@ -6,12 +6,13 @@ import usePage from "../../hooks/usePage"
 import BannerSection from "../../components/BannerSection"
 import TitlePage from "../../components/TitlePage"
 import Button from "../../components/Button"
+import PageError from "../../components/PageError"
 const Offers = () => {
     const { isLoading, error, data: offers } = usePage("offers")
 
     if (isLoading) return <OnLoadingPage />
 
-    if (error) return "An error has occurred: " + error.message
+    if (error) return <PageError />
 
     return (
         <div className="container">

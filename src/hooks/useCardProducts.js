@@ -1,28 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useHistory } from "react-router"
-import apiClient from "../auth/apiClient"
+import useApiAuthClient from "./useApiAuthClient"
 
 export const useCardProducts = () => {
+    const apiAuthClient = useApiAuthClient()
     return useQuery(
         ["PRODUCTS_CART"],
         async () => {
-            const response = await apiClient.get("api/card-products").then((res) => res.data)
+            const response = await apiAuthClient.get("/card-products").then((res) => res.data)
             return response
         },
         {
             staleTime: Infinity,
-            notifyOnChangePropsExclusions: ["isStale"],
         }
     )
 }
 
 export const useAddProductToCart = () => {
+    const apiAuthClient = useApiAuthClient()
     const queryClient = useQueryClient()
     const history = useHistory()
 
     return useMutation(
         async (params) => {
-            const response = await apiClient.post("api/card-products", { ...params })
+            const response = await apiAuthClient.post("/card-products", { ...params })
             return response
         },
         {
@@ -37,11 +38,12 @@ export const useAddProductToCart = () => {
 }
 
 export const useRemoveProductToCart = () => {
+    const apiAuthClient = useApiAuthClient()
     const queryClient = useQueryClient()
 
     return useMutation(
         async (product_id) => {
-            const response = await apiClient.delete("api/card-products/" + product_id)
+            const response = await apiAuthClient.delete("/card-products/" + product_id)
             return response
         },
         {

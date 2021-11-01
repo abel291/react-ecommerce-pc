@@ -1,6 +1,7 @@
 import Button from "../../components/Button.js"
 
 import OnLoadingPage from "../../components/OnLoadingPage.js"
+import PageError from "../../components/PageError.js"
 import TitleContent from "../../components/TitleContent.js"
 import { useCardProducts } from "../../hooks/useCardProducts.js"
 import { useAddProductsToCheckout } from "../../hooks/useProductsCheckout.js"
@@ -17,7 +18,7 @@ const ShoppingCarts = () => {
     const cartProducts = useCardProducts()
     if (cartProducts.isFetching) return <OnLoadingPage />
 
-    if (cartProducts.error) return "An error has occurred: " + cartProducts.error.message
+    if (cartProducts.error) return <PageError/>
 
     return (
         <div className="container py-content relative">
@@ -28,6 +29,7 @@ const ShoppingCarts = () => {
                         <ProductsCart product={product} key={product.id} />
                     ))}
                 </div>
+                
                 {cartProducts.data.products.length ? (
                     <>
                         <div>

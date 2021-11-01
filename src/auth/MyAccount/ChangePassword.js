@@ -2,7 +2,7 @@ import { useState } from "react"
 import Button from "../../components/Button"
 import InputLabel from "../../components/InputLabel"
 import Notifications from "../../components/Notifications"
-import ValidaterErrors from "../../components/ValidateError"
+
 import useAuth from "../../hooks/useAuth"
 
 
@@ -32,11 +32,11 @@ const ChangePassword = () => {
                 setDataPassword(dataPasswordInit)
 
             },
-            onError: (data, variables, context) => {
+            onError: (error, variables, context) => {
                 setNotifications({
                     ...notification,
                     type: "error",
-                    errors: ValidaterErrors(data.response), //return array
+                    responseError: error, //return array
                 })
             },
         })

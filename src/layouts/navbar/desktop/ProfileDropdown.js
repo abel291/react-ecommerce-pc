@@ -37,7 +37,7 @@ const ProfileDropdown = () => {
                             </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <Link to="/my-account/order" className="px-2 py-3 block hover:bg-gray-50">
+                            <Link to="/my-account/order" className="px-3 py-3 block hover:bg-gray-50">
                                 <div className="flex items-center">
                                     {/* <ShoppingBagIcon className="h-5 w-5 mr-2"/> */}
                                     <span>Ordenes</span>

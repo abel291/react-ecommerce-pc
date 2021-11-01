@@ -1,15 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 
-import apiClient from "../auth/apiClient"
+import useApiAuthClient from "./useApiAuthClient"
 
 const useAuth = (dispatch) => {
+    const apiAuthClient = useApiAuthClient()
     const queryClient = useQueryClient()
+
     const userData = useQuery(
         ["USER"],
         async () => {
-            await apiClient.get("/sanctum/csrf-cookie")
-            const response = await apiClient
-                .get("api/user")
+            if (!localStorage.getItem("token")) {
+                return null
+            }
+            const response = await apiAuthClient
+                .get("/auth/profile")
                 .then((res) => res.data)
                 .catch((res) => null)
             return response
@@ -19,7 +23,7 @@ const useAuth = (dispatch) => {
 
     const login = useMutation(
         async (dataLogin) => {
-            const response = await apiClient.post("/login", { ...dataLogin })
+            const response = await apiAuthClient.post("/auth/login", { ...dataLogin })
 
             return response
         },
@@ -31,9 +35,10 @@ const useAuth = (dispatch) => {
             },
         }
     )
+
     const register = useMutation(
         async (registerData) => {
-            const response = await apiClient.post("/register", {
+            const response = await apiAuthClient.post("/auth/register", {
                 ...registerData,
             })
 
@@ -50,34 +55,31 @@ const useAuth = (dispatch) => {
 
     const logout = useMutation(
         async () => {
-            await apiClient.get("/sanctum/csrf-cookie")
-            const response = await apiClient.post("/logout")
+            const response = await apiAuthClient.post("/auth/logout")
             return response
         },
         {
             onSuccess: function (response) {
                 queryClient.setQueryData("USER", null)
+                localStorage.removeItem("token")
             },
         }
     )
 
     const updateUser = useMutation(
         async (dataUser) => {
-            await apiClient.get("/sanctum/csrf-cookie")
-            const response = await apiClient.put("/user/profile-information", { ...dataUser })
+            const response = await apiAuthClient.put("/auth/user/profile-information", { ...dataUser })
             return response
         },
         {
             onSuccess: function (data, variables, context) {
-                console.log(data, variables, context)
                 queryClient.setQueryData("USER", { ...userData.data, ...variables })
             },
         }
     )
 
     const updatePassword = useMutation(async (dataPassword) => {
-        await apiClient.get("/sanctum/csrf-cookie")
-        const response = await apiClient.put("/user/password", { ...dataPassword })
+        const response = await apiAuthClient.put("/auth/user/password", { ...dataPassword })
         return response
     })
 

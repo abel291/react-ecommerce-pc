@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios"
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8000',
-    withCredentials: true,
-    //cancelToken : axiosSource.token
-});
+    baseURL: "https://laravel-api-abel291.herokuapp.com/api",
+    //withCredentials: true,
+})
 
- 
-export default apiClient;
+
+
+export default apiClient

@@ -3,7 +3,7 @@ import apiClient from "../auth/apiClient"
 
 const usePage = (page) => {
     const fetchPage = async () => {
-        const response = await apiClient.get("api/page/" + page).then((response) => {
+        const response = await apiClient.get("/page/" + page).then((response) => {
             return response.data
         })
         return response

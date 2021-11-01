@@ -2,6 +2,8 @@ import { MinusIcon, PlusIcon, ShoppingCartIcon } from "@heroicons/react/solid"
 import { useState } from "react"
 import { useHistory } from "react-router"
 import Button from "../../components/Button"
+import Notifications from "../../components/Notifications"
+
 import useAuth from "../../hooks/useAuth"
 import { useAddProductToCart } from "../../hooks/useCardProducts"
 import { formatNumber } from "../../hooks/useData"
@@ -11,7 +13,6 @@ const Feacture = ({ product }) => {
     const [quantity, setQuantity] = useState(1)
     const history = useHistory()
 
-    
     const addProductToCart = useAddProductToCart()
     const productCheckout = useMutationProductsCheckout()
     const { isLogged } = useAuth()
@@ -105,6 +106,9 @@ const Feacture = ({ product }) => {
                     </div>
                 </Button>
             </div>
+            {(productCheckout.error || addProductToCart.error) && (
+                <Notifications type="error" error={productCheckout.error || addProductToCart.error} />
+            )}
         </div>
     )
 }

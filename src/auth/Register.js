@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom"
 import Button from "../components/Button"
 import InputLabel from "../components/InputLabel"
 import Notifications from "../components/Notifications"
-
-import ValidaterErrors from "../components/ValidateError"
 import useAuth from "../hooks/useAuth"
 
 const Register = () => {
@@ -39,25 +37,10 @@ const Register = () => {
             onError: (error, variables, contexto) => {
                 setNotifications({
                     type: "error",
-                    errors: ValidaterErrors(error.response),
+                    responseError: error,
                 })
             },
         })
-
-        // await auth
-        //     .register(dataRegister)
-        //     .then((response)=>{
-        //         history.push({pathname:'/login'})
-        //     })
-        //     .catch((response) => {
-        //         setNotifications({
-        //             type: "error",
-        //             errors: ValidaterErrors(response.response), //return array
-        //         })
-        //     })
-        //     .then(() => {
-        //         setregister.(false)
-        //     })
     }
     useEffect(() => {
         if (isLogged) history.replace("/")

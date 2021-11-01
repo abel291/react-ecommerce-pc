@@ -9,9 +9,10 @@ import Description from "./Description"
 import { useParams } from "react-router"
 import Feacture from "./Feacture"
 import { Link } from "react-router-dom"
+import PageError from "../../components/PageError"
 
 const fetchProduct = async (id, slug) => {
-    const response = await apiClient.get("api/product/" + id + "/" + slug).then((res) => {
+    const response = await apiClient.get("/product/" + id + "/" + slug).then((res) => {
         return {
             product: res.data.product,
             relatedProducts: res.data.related_products,
@@ -36,7 +37,7 @@ const Product = () => {
 
     if (!product) return <OnLoadingPage />
 
-    if (error) return "An error has occurred: " + error.message
+    if (error) return <PageError />
 
     return (
         <div className="container py-content">

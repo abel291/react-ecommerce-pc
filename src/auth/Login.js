@@ -5,7 +5,7 @@ import InputLabel from "../components/InputLabel"
 import Notifications from "../components/Notifications"
 import OnLoadingPage from "../components/OnLoadingPage"
 
-import ValidaterErrors from "../components/ValidateError"
+
 
 import useAuth from "../hooks/useAuth"
 //import Input from "../components/Input"
@@ -36,7 +36,7 @@ const Login = () => {
             onError: (error, variables, contexto) => {
                 setNotifications({
                     type: "error",
-                    errors: ValidaterErrors(error.response),
+                    responseError: error,
                 })
             },
         })

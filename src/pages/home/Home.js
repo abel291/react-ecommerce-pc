@@ -10,9 +10,7 @@ import BannerSection from "../../components/BannerSection"
 
 const Home = () => {
     const { isLoading, error, data: home } = usePage("home")
-    const {
-        data: { brands, categories },
-    } = useData()
+    const {data} = useData()
 
     if (isLoading) return <OnLoadingPage />
 
@@ -62,7 +60,7 @@ const Home = () => {
 
                 <div className="py-content space-y-4">
                     <h2 className="font-semibold text-2xl">Categorias</h2>
-                    <CarouselHome items={categories} typeItem="categories" />
+                    <CarouselHome items={data.categories} typeItem="categories" />
                 </div>
 
                 <div className="py-content space-y-4">
@@ -82,7 +80,7 @@ const Home = () => {
 
                 <div className="py-content space-y-4">
                     <h2 className="font-semibold text-2xl">Top marcas</h2>
-                    <CarouselHome items={brands} typeItem="brands" />
+                    <CarouselHome items={data.brands} typeItem="brands" />
                 </div>
             </div>
         </>

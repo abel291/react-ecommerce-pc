@@ -3,7 +3,7 @@ import apiClient from "../auth/apiClient"
 
 export const useData = () => {
     const fetchData = async () => {
-        const response = await apiClient.get("api/init").then((res) => res.data)
+        const response = await apiClient.get("/init").then((res) => res.data)
         return response
     }
     return useQuery(["DATA_INIT"], fetchData, {

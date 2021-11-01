@@ -40,7 +40,7 @@ const CarouselHome = ({ items, typeItem }) => {
                         <Link
                             to={{
                                 pathname: "/search",
-                                state: { typeItem: item.slug },
+                                state: { [typeItem]: item.slug },
                             }}
                         >
                             <div className="flex flex-col items-center">

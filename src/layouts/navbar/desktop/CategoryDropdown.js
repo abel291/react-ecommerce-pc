@@ -6,13 +6,11 @@ import SpinnerLoad from "../../../components/SpinnerLoad"
 import {useData} from "../../../hooks/useData"
 
 const CategoryDropdown = () => {
-    const {
-        data: { categories },
-    } = useData()
+    const {isLoading,error,data} = useData()
 
-    if (categories.isLoading) return <SpinnerLoad/>
+    if (isLoading) return <SpinnerLoad />
 
-    if (categories.error) return "error"
+    if (error) return "error"
 
     return (
         <Popover >
@@ -35,7 +33,7 @@ const CategoryDropdown = () => {
                 <Popover.Panel className="absolute inset-x-0  z-20 mt-2  max-w-3xl">
                     <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white">
                         <div className="p-4 lg:p-7 grid  grid-cols-2  lg:grid-cols-3 gap-4 lg:gap-6 ">
-                            {categories.map((category) => (
+                            {data.categories.map((category) => (
                                 <Popover.Button key={category.id}>
                                     <Link
                                         to={{
@@ -55,7 +53,7 @@ const CategoryDropdown = () => {
                             ))}
                         </div>
                         <div className="p-4 lg:p-7 bg-gray-50 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                            <a href="##" className="">
+                            <Link to="search">
                                 <div className="text-right">
                                 <Link to="/search">
                                 <span className="text-sm font-semibold ">Ver todo los productos</span>
@@ -63,7 +61,7 @@ const CategoryDropdown = () => {
                                     
                                 </div>
                                 
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </Popover.Panel>
