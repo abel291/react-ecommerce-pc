@@ -1,8 +1,8 @@
 # Ecommerce React
 
-Tienda el linea de venta de hadware , contruida en React
+Tienda el linea de venta de piezas de pc , construida en React
 
-## Instrucciones de intalacion 🚀
+## Instrucciones de instalación 🚀
 
 _En el directorio del proyecto, puede ejecutar:._
 
@@ -10,7 +10,7 @@ _En el directorio del proyecto, puede ejecutar:._
 
 ### Pre-requisitos 🔧
 
-Esta Aplicacion consume una api hecha en laravel que esta en este  [repo](https://github.com/abel291/laravel-api-ecommerce).
+Esta Aplicación consume una api hecha en laravel que esta en este  [repo](https://github.com/abel291/laravel-api-ecommerce).
 
 ### Screenshot 🖥️️
 ![screenshot-1](/public/img/screenshot/screenshot-1.png)
