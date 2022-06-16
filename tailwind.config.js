@@ -11,16 +11,20 @@ module.exports = {
       padding: {
         DEFAULT: "1rem",
         sm: "1rem",
-        lg: "2rem",
+        lg: "3rem",
         xl: "4rem",
         "2xl": "5rem",
       },
     },
     extend: {
       fontFamily: {
-          sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      
+    },
   },
-  },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

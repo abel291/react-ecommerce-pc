@@ -30,7 +30,7 @@ setNotifications({
                 }) */
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setNotifications({ ...notification, type: "hidden" })
+        setNotifications({ ...notification, type: "" })
         updateUser.mutate(dataUser, {
             onSuccess: (data, variables, context) => {
                 setNotifications({
@@ -43,7 +43,7 @@ setNotifications({
                 setNotifications({
                     ...notification,
                     type: "error",
-                    responseError: error,
+                    errorResponse: error.response,
                 })
             },
         })

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import BannerSection from "../../components/BannerSection"
 
 import ListCardProducts from "../../components/ListCardProducts"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import PageError from "../../components/PageError"
 import TitlePage from "../../components/TitlePage"
 import usePage from "../../hooks/usePage"
@@ -10,7 +10,7 @@ import usePage from "../../hooks/usePage"
 const Combos = () => {
     const { isLoading, error, data: combos } = usePage("assemblies")
 
-    if (isLoading) return <OnLoadingPage />
+    if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
     return (
@@ -34,10 +34,9 @@ const Combos = () => {
             </div>
             <div className="py-content text-center">
                 <Link
-                    to={{
-                        pathname: "/search",
-                        state: { categories: "combos" },
-                    }}
+                    
+                    to="/search"
+                        state={{ categories: "combos"}}
                     className="text-lg font-semibold border border-gray-300 rounded-md py-3 px-6"
                 >
                     Ver mas

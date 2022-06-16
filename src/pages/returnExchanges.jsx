@@ -3,7 +3,7 @@ import BannerWithTitle from "../components/BannerWithTitle"
 const ReturnExchanges = () => {
     return (
         <div>
-            <BannerWithTitle title="Devoluciones y cambios" image="/img/banner-page4.jpg" />
+            <BannerWithTitle title="Devoluciones y cambios" image="/img/return-exchanges.jpg" />
             <div className="container py-content mt-8">
                 <div className="space-y-6 md:space-y-10">
                     <p>

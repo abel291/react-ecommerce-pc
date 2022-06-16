@@ -3,9 +3,9 @@ import BannerWithTitle from "../components/BannerWithTitle"
 const ShippingDelivery = () => {
     return (
         <div>
-            <BannerWithTitle title="Envío y Entrega" image="/img/banner-page3.jpg" />
+            <BannerWithTitle title="Envío y Entrega" image="/img/shipping-delivery/banner.jpg" />
             <div className="container py-content mt-8">
-                <div className="space-y-6 md:space-y-10">
+                <div className="space-y-3 md:space-y-6 text-justify">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur interdum metus in placerat. Vestibulum
                         justo ante, pulvinar vitae justo sed, auctor tristique lacus. Maecenas sit amet libero dictum, vestibulum urna nec,

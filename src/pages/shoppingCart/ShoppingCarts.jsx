@@ -1,6 +1,6 @@
 import Button from "../../components/Button"
 
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import PageError from "../../components/PageError"
 import TitleContent from "../../components/TitleContent"
 import { useCardProducts } from "../../hooks/useCardProducts"
@@ -16,7 +16,7 @@ const ShoppingCarts = () => {
     }
 
     const cartProducts = useCardProducts()
-    if (cartProducts.isFetching) return <OnLoadingPage />
+    if (cartProducts.isFetching) return <LoadingPage />
 
     if (cartProducts.error) return <PageError/>
 

@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import CarouselBanners from "../../components/CarouselBanners"
 import ListCardProducts from "../../components/ListCardProducts"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import PageError from "../../components/PageError"
 import TitlePage from "../../components/TitlePage"
 import usePage from "../../hooks/usePage"
@@ -11,7 +11,7 @@ import usePage from "../../hooks/usePage"
 const Assemblies = () => {
     const { isLoading, error, data: assemblies } = usePage("assemblies")
 
-    if (isLoading) return <OnLoadingPage />
+    if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
 
@@ -33,11 +33,9 @@ const Assemblies = () => {
                 </div>
             </div>
             <div className="py-content text-center">
-                <Link
-                    to={{
-                        pathname: "/search",
-                        state: { categories: "ensambles" },
-                    }}
+                <Link                   
+                    to="/search"
+                    state={{ categories:"ensambles" }}
                     className="text-lg font-bold border border-gray-300 rounded py-2 px-4"
                 >
                     Ver mas

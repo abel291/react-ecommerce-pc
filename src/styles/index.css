@@ -5,41 +5,13 @@
     backdrop-filter: blur(5px);
     background: #ff980066;
 }
+
 @layer utilities {
     .py-content {
-        @apply py-5;
+        @apply py-5 md:py-6 lg:py-7 xl:py-8;
     }
     .pb-content {
-        @apply pb-5;
-    }
-    /* //md */
-    @media (min-width: 768px) {
-        .py-content {
-            @apply py-6;
-        }
-        .pb-content {
-            @apply pb-6;
-        }
-    }
-
-    /* //lg */
-    @media (min-width: 1024px) {
-        .py-content {
-            @apply py-7;
-        }
-        .pb-content {
-            @apply pb-7;
-        }
-    }
-
-    /* //xl */
-    @media (min-width: 1280px) {
-        .py-content {
-            @apply py-8;
-        }
-        .pb-content {
-            @apply pb-8;
-        }
+        @apply pb-5 md:pb-6 lg:pb-7 xl:pb-8;
     }
 }
 

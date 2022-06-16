@@ -9,7 +9,8 @@ import ScrollToTop from "./components/ScrollToTop"
 import PrivateRoute from "./auth/PrivateRoute"
 import { QueryClient, QueryClientProvider } from "react-query"
 
-import Home from "./pages/Home/Home"
+import { routesPrivate, routesPublic } from "./routes";
+//import { routesPublic } from "./routes";
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -29,19 +30,23 @@ function App() {
                         <Navbar />
                         <div className="grow">
                             <Routes>
-                                <Route
-                                    key={"/"}
-                                    path={"/"}
-                                    element={<Home/>}
-                                />
-                                {/* {routes.routesPublic.map((item) => (
+
+                                {routesPublic.map((item) => (
                                     <Route
-                                        key={item.path} exact
+                                        key={item.path}
                                         path={item.path}
-                                        component={item.Component}
+                                        element={<item.Component />}
 
                                     />
-                                ))}  */}
+                                ))}
+                                {routesPrivate.map((item) => (
+                                    <Route
+                                        key={item.path}
+                                        path={item.path}
+                                        element={<PrivateRoute Component={item.Component} />}
+                                    />
+                                ))}
+
                             </Routes>
 
                         </div>

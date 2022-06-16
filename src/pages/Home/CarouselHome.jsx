@@ -39,10 +39,8 @@ const CarouselHome = ({ items, typeItem }) => {
                 {items.map((item) => (
                     <SwiperSlide key={item.id}>
                         <Link
-                            to={{
-                                pathname: "/search",
-                                state: { [typeItem]: item.slug },
-                            }}
+                            to="/search"
+                            state={{ [typeItem]: item.slug }}
                         >
                             <div className="flex flex-col items-center">
                                 <div className="w-full h-44 p-6 rounded-lg bg-gray-100 flex items-center justify-center">
@@ -69,7 +67,7 @@ const CarouselHome = ({ items, typeItem }) => {
                     <ChevronRightIcon className="h-6 w-6 lg:h-4 lg:w-4" />
                 </button>
             </div>
-        </div>
+        </div >
     )
 }
 

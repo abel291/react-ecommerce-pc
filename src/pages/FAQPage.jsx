@@ -3,7 +3,7 @@ import BannerWithTitle from "../components/BannerWithTitle"
 const FAQPage = () => {
     return (
         <div>
-            <BannerWithTitle title="Preguntas frecuentes" image="/img/banner-page2.jpg" />
+            <BannerWithTitle title="Preguntas frecuentes" image="/img/faq/banner.jpg" />
             <div className="container py-content mt-8">
                 <div className="space-y-6 md:space-y-10">
                     <div>

@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { createSearchParams, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useEffect } from "react"
 import ListCardProducts from "../../components/ListCardProducts"
 
@@ -9,13 +9,14 @@ import FilterPrice from "./FilterPrice"
 import apiClient from "../../auth/apiClient"
 
 import Pagination from "../../components/Pagination"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import FiltersList from "./FiltersList"
 import FilterRadio from "./FilterRadio"
 
 import { useQuery } from "react-query"
 import { useData } from "../../hooks/useData"
 import PageError from "../../components/PageError"
+import { Transition } from "@headlessui/react"
 
 const offers = [
     {
@@ -52,10 +53,11 @@ const Search = () => {
     }
 
     const titleRef = useRef()
-    const history = useHistory()
-    const location = history.location
+    const location = useLocation();
+
     const [filtersActive, setFiltersActive] = useState(null)
     const [filtersNoEmpty, setFiltersNoEmpty] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleChangeSort = (e) => {
         let target = e.target
@@ -95,14 +97,12 @@ const Search = () => {
 
     //URL TO STATE filtersActive
     useEffect(() => {
-        if (location.state !== undefined) {
+        if (location.state !== null) {
             dataFromStateLocations()
             return
         }
 
         let newFiltersActive = filtersInitialise
-
-        let searchParams = new URLSearchParams(location.search)
 
         for (const property in filtersInitialise) {
             let data = searchParams.get(property)
@@ -125,11 +125,14 @@ const Search = () => {
     }, [])
 
     useEffect(() => {
-        if (filtersActive !== null && location.state !== undefined) {
+
+        if (filtersActive !== null && location.state !== null) {
+
             dataFromStateLocations()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.state])
+
 
     useEffect(() => {
         if (filtersActive !== null) {
@@ -137,6 +140,7 @@ const Search = () => {
 
             for (const property in filtersActive) {
                 let data = filtersActive[property]
+
                 let isEmpty = false
                 switch (property) {
                     case "categories":
@@ -155,9 +159,14 @@ const Search = () => {
                     newfiltersNoEmpty[property] = data
                 }
             }
+
             setFiltersNoEmpty({ ...newfiltersNoEmpty })
-            let searchParams = new URLSearchParams(newfiltersNoEmpty)
-            history.replace({ ...location, state: undefined, search: "?" + searchParams.toString() })
+
+            let newParams = new URLSearchParams(newfiltersNoEmpty)
+            setSearchParams(newParams)
+
+
+
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filtersActive])
@@ -185,7 +194,7 @@ const Search = () => {
         keepPreviousData: true,
     })
 
-    if (products === undefined) return <OnLoadingPage />
+    if (products === undefined) return <LoadingPage />
 
     if (error) return <PageError />
 
@@ -238,8 +247,11 @@ const Search = () => {
                                 </div>
                             </>
                         )}
-                        <div className="py-6">
-                            <img src="/img/banner-vertical-search.jpg" alt="" />
+                        <div className="py-6 ">
+                            <a target="_black" href="https://www.logitechstore.com.ar/Gaming/Volantes">
+                                <img className="rounded-lg" src="/img/banner-sidebar-search.jpg" alt="" />
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -277,7 +289,19 @@ const Search = () => {
                         ) : (
                             <div className="text-center mt-10 pt-10">No se encontraron registros</div>
                         )}
-                        {isFetching && <div className="absolute inset-0 backdrop-filter backdrop-blur-md z-10"></div>}
+                        <Transition
+                            show={isFetching}
+                            enter="transition-opacity duration-500"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition-opacity duration-500"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                            className="absolute inset-0 backdrop-filter backdrop-blur-md z-10"
+                        >
+
+                        </Transition>
+
                     </div>
                 </div>
             </div>

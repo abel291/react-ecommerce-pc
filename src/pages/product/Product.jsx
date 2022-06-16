@@ -1,6 +1,6 @@
 import apiClient from "../../auth/apiClient"
 import CarouselProduct from "./CarouselProduct"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 
 import { useQuery } from "react-query"
 
@@ -23,7 +23,6 @@ const fetchProduct = async (id, slug) => {
 
 const Product = () => {
     const { id, slug } = useParams()
-
     const {
         error,
         data: { product, relatedProducts },
@@ -35,7 +34,7 @@ const Product = () => {
         },
     })
 
-    if (!product) return <OnLoadingPage />
+    if (!product) return <LoadingPage />
 
     if (error) return <PageError />
 
@@ -44,12 +43,11 @@ const Product = () => {
             <div className="hidden md:block text-sm text-gray-400">
                 <span>
                     <Link
-                        to={{
-                            pathname: "/search",
-                            state: { categories: product.category.slug },
-                        }}
+
+                        to="/search"
+                        state={{ categories: product.category.slug }}
                     >
-                        {product.category.name} 
+                        {product.category.name}
                     </Link>
                 </span>
                 <span> / </span>

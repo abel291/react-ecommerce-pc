@@ -1,25 +1,25 @@
 import { Route, Navigate, useLocation } from "react-router-dom"
-import OnLoadingPage from "../components/OnLoadingPage"
+import LoadingPage from "../components/LoadingPage"
 import useAuth from "../hooks/useAuth"
 
 
 //import { useEffect, useState } from "react"
 
-const PrivateRoute = (props) => {
+const PrivateRoute = ({ Component }) => {
 
     const location = useLocation()
     const { userData } = useAuth()
     const { isLoading, error, data: user } = userData
 
-    if (isLoading) return <OnLoadingPage />
+    if (isLoading) return <LoadingPage />
 
     if (error) return "An error has occurred: " + error.message
 
     return user ? (
-        <Route {...props} />
+        <Component />
     ) : (
         <Navigate
-            to="login"
+            to="/login"
             state={{ from: location }}
         />
     )

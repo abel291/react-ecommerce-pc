@@ -57,7 +57,7 @@ const ShippingAddress = ({ handleSubmit, isLoading }) => {
                 <textarea name="note" onChange={handleChangle} className="mt-1 w-full text-sm px-4 py-3" rows="5" value={dataAdress.note} />
             </div>
             <div>
-                <Button isLoading={isLoading} textLoading="Realizando Pedido">
+                <Button isLoading={isLoading}>
                     Realizar Pedido
                 </Button>
             </div>

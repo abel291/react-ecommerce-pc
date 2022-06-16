@@ -1,5 +1,5 @@
 import Notifications from "../../components/Notifications"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import useAuth from "../../hooks/useAuth"
 
 import { formatNumber } from "../../hooks/useData"
@@ -9,7 +9,7 @@ const OrderComplete = () => {
     const { user } = useAuth()
     const productsCheckout = useProductsCheckout()
 
-    if (productsCheckout.isFetching) return <OnLoadingPage />
+    if (productsCheckout.isFetching) return <LoadingPage />
     if (productsCheckout.error) return "An error has occurred: " + productsCheckout.error.message
 
     const { charges, products } = productsCheckout.data

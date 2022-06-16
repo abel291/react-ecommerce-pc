@@ -1,6 +1,6 @@
 import ListCardProducts from "../../components/ListCardProducts"
 import { Link } from "react-router-dom"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 
 import usePage from "../../hooks/usePage"
 import BannerSection from "../../components/BannerSection"
@@ -9,8 +9,8 @@ import Button from "../../components/Button"
 import PageError from "../../components/PageError"
 const Offers = () => {
     const { isLoading, error, data: offers } = usePage("offers")
-
-    if (isLoading) return <OnLoadingPage />
+    
+    if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
 
@@ -31,10 +31,9 @@ const Offers = () => {
             </div>
             <div className="py-content text-center">
                 <Link
-                    to={{
-                        pathname: "/search",
-                        state: { offers: 10 },
-                    }}
+                    
+                    to="/search"
+                    state={{ offers: 10 }}
                     className=""
                 >
                     <Button>Ver mas</Button>

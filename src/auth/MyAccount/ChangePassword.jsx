@@ -21,7 +21,7 @@ const ChangePassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setNotifications({ ...notification, type: "hidden" })
+        setNotifications({ ...notification, type: "" })
         updatePassword.mutate(dataPassword, {
             onSuccess: (data, variables, context) => {
                 setNotifications({
@@ -36,7 +36,7 @@ const ChangePassword = () => {
                 setNotifications({
                     ...notification,
                     type: "error",
-                    responseError: error, //return array
+                    errorResponse: error.response, //return array
                 })
             },
         })

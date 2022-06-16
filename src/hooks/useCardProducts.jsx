@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router"
 import useApiAuthClient from "./useApiAuthClient"
 
 export const useCardProducts = () => {
@@ -19,7 +19,7 @@ export const useCardProducts = () => {
 export const useAddProductToCart = () => {
     const apiAuthClient = useApiAuthClient()
     const queryClient = useQueryClient()
-    const history = useHistory()
+    const navigate = useNavigate()
 
     return useMutation(
         async (params) => {
@@ -28,7 +28,8 @@ export const useAddProductToCart = () => {
         },
         {
             onSuccess: function (response) {
-                history.push("/shopping-carts")
+                navigate("/shopping-carts")
+
                 queryClient.setQueryData("PRODUCTS_CART", () => {
                     return response.data
                 })

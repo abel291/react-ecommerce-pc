@@ -1,5 +1,6 @@
-import { Route, Switch } from "react-router"
+import { Route, Routes } from "react-router"
 import { NavLink } from "react-router-dom"
+import { useMatch } from "react-router"
 import SpinnerLoad from "../../components/SpinnerLoad"
 import useAuth from "../../hooks/useAuth"
 
@@ -14,48 +15,50 @@ const MyAccount = () => {
     const handleClickLogout = () => {
         logout.mutate()
     }
+    //let { url } = useMatch()
+    //console.log(useMatch())
     return (
         <div className="container py-content">
             <div className="grid grid-cols-6 md:gap-6 gap-y-10">
                 <div className="col-span-6 md:col-span-2">
                     <div className="flex flex-col space-y-1">
-                        <NavLink exact to="/my-account"
+                        <NavLink to="/my-account/"
                             className={({ isActive }) =>
-                            ("block px-4 py-3 rounded-md" + isActive
-                                ? "bg-gray-100 font-semibold"
-                                : ""
-                            )}>
+                                "block px-4 py-3 rounded-md" + (isActive
+                                    ? "bg-gray-100 font-semibold"
+                                    : ""
+                                )}>
                             Dashboard
                         </NavLink>
 
-                        <NavLink to="/my-account/order"
+                        <NavLink to="order"
                             className={({ isActive }) =>
-                            ("block px-4 py-3 rounded-md" + isActive
-                                ? "bg-gray-100 font-semibold"
-                                : ""
-                            )}
+                                "block px-4 py-3 rounded-md" + (isActive
+                                    ? "bg-gray-100 font-semibold"
+                                    : ""
+                                )}
 
                         >
                             Ordenes
                         </NavLink>
 
                         <NavLink
-                            to="/my-account/account-details"
+                            to="account-details"
                             className={({ isActive }) =>
-                            ("block px-4 py-3 rounded-md" + isActive
-                                ? "bg-gray-100 font-semibold"
-                                : ""
-                            )}
+                                "block px-4 py-3 rounded-md" + (isActive
+                                    ? "bg-gray-100 font-semibold"
+                                    : ""
+                                )}
                         >
                             Detalles de cuenta
                         </NavLink>
                         <NavLink
-                            to="/my-account/change-password"
+                            to="change-password"
                             className={({ isActive }) =>
-                            ("block px-4 py-3 rounded-md" + isActive
-                                ? "bg-gray-100 font-semibold"
-                                : ""
-                            )}
+                                "block px-4 py-3 rounded-md" + (isActive
+                                    ? "bg-gray-100 font-semibold"
+                                    : ""
+                                )}
                         >
                             Cambiar contraseña
                         </NavLink>
@@ -71,10 +74,12 @@ const MyAccount = () => {
                 </div>
                 <div className="col-span-6 md:col-span-4">
 
-                    <Route path="/my-account" element={Dashboard}></Route>
-                    <Route path="/my-account/order" element={Order}></Route>
-                    <Route path="/my-account/account-details" element={AccountDetails}></Route>
-                    <Route path="/my-account/change-password" element={ChangePassword}></Route>
+                    <Routes>
+                        <Route path="" element={<Dashboard />}></Route>
+                        <Route path="order" element={<Order />}></Route>
+                        <Route path="account-details" element={<AccountDetails />}></Route>
+                        <Route path="change-password" element={<ChangePassword />}></Route>
+                    </Routes>
 
                 </div>
             </div>

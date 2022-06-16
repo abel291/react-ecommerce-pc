@@ -1,3 +1,4 @@
+import { XIcon } from "@heroicons/react/outline"
 import { Link } from "react-router-dom"
 import { useAddProductToCart, useRemoveProductToCart } from "../../hooks/useCardProducts"
 import { formatNumber } from "../../hooks/useData"
@@ -68,7 +69,7 @@ const ProductsCart = ({ product }) => {
                 <div className="col-span-6 md:col-span-3">
                     <div className="flex flex-col justify-between items-end h-full">
                         <span className=" font-bold text-lg">{formatNumber(product.pivot.total_price_quantity)}</span>
-                        <button onClick={handleClickRemoveItem} className="text-sm text-blue-500 text-right">
+                        <button onClick={handleClickRemoveItem} className="text-sm text-red-500 text-right font-medium">
                             Remover
                         </button>
                     </div>

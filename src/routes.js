@@ -4,7 +4,7 @@ import Combos from "./pages/combos/Combos"
 import ContactUs from "./pages/contact/ContactUs"
 import FAQPage from "./pages/FAQPage"
 import ShippingDelivery from "./pages/ShippingDelivery"
-import ReturnExchanges from "./pages/returnExchanges"
+import ReturnExchanges from "./pages/ReturnExchanges"
 import Login from "./auth/Login"
 import Home from "./pages/home/Home"
 import Product from "./pages/product/Product"
@@ -16,28 +16,28 @@ import Checkout from "./pages/checkout/Checkout"
 import OrderComplete from "./pages/checkout/OrderComplete"
 
 const routesPublic = [
-    { type: "public", path: "/", Component: Home },
-    { type: "public", path: "/search", Component: Search },
-    { type: "public", path: "/product/:id/:slug", Component: Product },
-    { type: "public", path: "/offers", Component: Offers },
-    { type: "public", path: "/assemblies", Component: Assemblies },
-    { type: "public", path: "/combos", Component: Combos },
-    { type: "public", path: "/contact-us", Component: ContactUs },
-    { type: "public", path: "/faq", Component: FAQPage },
-    { type: "public", path: "/shipping-delivery", Component: ShippingDelivery },
-    { type: "public", path: "/return-exchanges", Component: ReturnExchanges },
-    { type: "public", path: "/login", Component: Login },
-    { type: "public", path: "/register", Component: Register },
+    { path: "/", Component: Home },
+    { path: "/search", Component: Search },
+    {  path: "/product/:id/:slug", Component: Product },
+    { path: "/offers", Component: Offers },
+    { path: "/assemblies", Component: Assemblies },
+    { path: "/combos", Component: Combos },
+    { path: "/contact-us", Component: ContactUs },
+    { path: "/faq", Component: FAQPage },
+    { path: "/shipping-delivery", Component: ShippingDelivery },
+    { path: "/return-exchanges", Component: ReturnExchanges },
+    { path: "/login", Component: Login },
+    {  path: "/register", Component: Register },
 ]
 
-const routePrivate = [
-    { type: "private", path: "/my-account/:user?", Component: MyAccount },
-    { type: "private", path: "/shopping-carts", Component: ShoppingCarts },
-    { type: "private", path: "/checkout", Component: Checkout },
-    { type: "private", path: "/order-complete", Component: OrderComplete },
+const routesPrivate = [
+    { path: "/my-account/*", Component: MyAccount },
+    { path: "/shopping-carts", Component: ShoppingCarts },
+    { path: "/checkout", Component: Checkout },
+    { path: "/order-complete", Component: OrderComplete },
 ]
 
-export default {
-    routesPublic: routesPublic,
-    routePrivate: routePrivate
+export {
+    routesPublic,
+    routesPrivate
 }

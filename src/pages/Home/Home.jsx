@@ -2,18 +2,20 @@ import ListCardProducts from "../../components/ListCardProducts"
 import CarouselBanners from "../../components/CarouselBanners"
 import usePage from "../../hooks/usePage"
 import CarouselHome from "./CarouselHome"
-import OnLoadingPage from "../../components/OnLoadingPage"
+import LoadingPage from "../../components/LoadingPage"
 import { useData } from "../../hooks/useData"
 import PageError from "../../components/PageError"
 import BannerSection from "../../components/BannerSection"
 import SectionsHome from "./SectionsHome"
+
 // import Payment from "./Payment"
 
 const Home = () => {
     const { isLoading, error, data: home } = usePage("home")
     const { data } = useData()
-
-    if (isLoading) return <OnLoadingPage />
+    
+    
+    if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
 

@@ -1,4 +1,4 @@
-const SpinnerLoad = ({ text, styleClass="h-5 w-5 mr-3" }) => {
+const SpinnerLoad = ({ text, styleClass="h-5 w-5" }) => {
     return (
         
             <svg

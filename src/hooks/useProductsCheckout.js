@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router"
 import apiClient from "../auth/apiClient"
 
 export const useProductsCheckout = () => {
@@ -10,8 +10,7 @@ export const useProductsCheckout = () => {
 
 export const useMutationProductsCheckout = (product) => {
     const queryClient = useQueryClient()
-    const history = useHistory()
-
+    const navigate = useNavigate()
     return useMutation(
         async (product) => {
             const response = await apiClient.post("/product-checkout", product)
@@ -22,14 +21,15 @@ export const useMutationProductsCheckout = (product) => {
                 queryClient.setQueryData("PRODUCTS_CHECKOUT", () => {
                     return response.data
                 })
-                history.push("/checkout")
+                navigate("/checkout")
+
             },
         }
     )
 }
 export const useAddProductsToCheckout = (product) => {
     const queryClient = useQueryClient()
-    const history = useHistory()
+    const navigate = useNavigate()
 
     return useMutation(
         async () => {
@@ -41,7 +41,7 @@ export const useAddProductsToCheckout = (product) => {
                 queryClient.setQueryData("PRODUCTS_CHECKOUT", () => {
                     return response.data
                 })
-                history.push("/checkout")
+                navigate("/checkout")
             },
         }
     )

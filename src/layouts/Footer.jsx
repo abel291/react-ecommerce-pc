@@ -63,46 +63,41 @@ const Footer = () => {
                         <h4 className="font-semibold text-lg ">Top Categorias</h4>
                         <div className="mt-2 space-y-2 text-sm font-light">
                             <Link
-                                to={{
-                                    pathname: "/search",
-                                    state: { categories: "teclados" },
-                                }}
+
+                                to="/search"
+                                state={{ categories: 'teclados' }}
                                 className="block"
                             >
                                 Teclados
                             </Link>
                             <Link
-                                to={{
-                                    pathname: "/search",
-                                    state: { categories: "mouses" },
-                                }}
+
+                                to="/search"
+                                state={{ categories: 'mouses' }}
                                 className="block"
                             >
                                 Mouses
                             </Link>
                             <Link
-                                to={{
-                                    pathname: "/search",
-                                    state: { categories: "procesadores" },
-                                }}
+
+                                to="/search"
+                                state={{ categories: 'procesadores' }}
                                 className="block"
                             >
                                 Procesadores
                             </Link>
                             <Link
-                                to={{
-                                    pathname: "/search",
-                                    state: { categories: "ram" },
-                                }}
+
+                                to="/search"
+                                state={{ categories: 'ram' }}
                                 className="block"
                             >
                                 Ram
                             </Link>
                             <Link
-                                to={{
-                                    pathname: "/search",
-                                    state: { categories: "almacenamiento" },
-                                }}
+
+                                to="/search"
+                                state={{ categories: 'almacenamiento' }}
                                 className="block"
                             >
                                 Ssd

@@ -5,13 +5,13 @@ const ListCardProducts = ({ product, img, productNew }) => {
     return (
         <Link key={product.id} to={"/product/" + product.id + "/" + product.slug}>
             <div className="">
-                <div className="h-48 p-2  flex items-center justify-center">
+                <div className="h-48 p-2 flex items-center justify-center">
                     <img src={"/img/categories/" + product.img} alt={product.slug} className="max-h-full" />
                 </div>
                 <div className="">
                     <div className="my-2 space-x-1"></div>
                     <h2 className="text-heading font-medium mb-1 text-sm md:text-base ">{product.name}</h2>
-                    <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed truncate">{product.description_min}</p>
+                    <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed line-clamp-2">{product.description_min}</p>
                     <div className="mt-2">
                         {product.offer !== null ? (
                             <div>

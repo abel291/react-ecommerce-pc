@@ -1,6 +1,7 @@
 import { MinusIcon, PlusIcon, ShoppingCartIcon } from "@heroicons/react/solid"
 import { useState } from "react"
-import { useHistory } from "react-router"
+import { useLocation, useNavigate } from "react-router-dom"
+
 import Button from "../../components/Button"
 import Notifications from "../../components/Notifications"
 
@@ -11,7 +12,8 @@ import { useMutationProductsCheckout } from "../../hooks/useProductsCheckout"
 
 const Feacture = ({ product }) => {
     const [quantity, setQuantity] = useState(1)
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const addProductToCart = useAddProductToCart()
     const productCheckout = useMutationProductsCheckout()
@@ -21,7 +23,7 @@ const Feacture = ({ product }) => {
         if (isLogged) {
             addProductToCart.mutate({ product_id: product.id, quantity })
         } else {
-            history.push({ pathname: "/login", state: { from: history.location } })
+            navigate("/login", { state: { from: location.from } })
         }
     }
 
@@ -29,7 +31,8 @@ const Feacture = ({ product }) => {
         if (isLogged) {
             productCheckout.mutate({ product_id: product.id, quantity })
         } else {
-            history.push({ pathname: "/login", state: { from: history.location } })
+            console.log(location)
+            navigate("/login", { state: { from: location } })
         }
     }
     const handleClickQuantity = (i) => {
@@ -107,7 +110,7 @@ const Feacture = ({ product }) => {
                 </Button>
             </div>
             {(productCheckout.error || addProductToCart.error) && (
-                <Notifications type="error" responseError={productCheckout.error || addProductToCart.error} />
+                <Notifications type="error" error={productCheckout.error || addProductToCart.error} />
             )}
         </div>
     )

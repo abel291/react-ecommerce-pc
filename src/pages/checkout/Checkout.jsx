@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useHistory, Navigate } from "react-router"
+import { Navigate, useNavigate } from "react-router"
 
 import { fakeApi } from "../../hooks/useData"
 import { useProductsCheckout } from "../../hooks/useProductsCheckout"
@@ -8,7 +8,7 @@ import ShippingAddress from "./ShippingAddress"
 
 const Checkout = () => {
     const productsCheckout = useProductsCheckout()
-    const history = useHistory()
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
 
     if (!productsCheckout.data) return <Navigate to="/" />
@@ -19,8 +19,8 @@ const Checkout = () => {
         e.preventDefault()
         setIsLoading(true)
         fakeApi(() => {
-            history.push("/order-complete")
             setIsLoading(false)
+            navigate("/order-complete")
         })
     }
     return (

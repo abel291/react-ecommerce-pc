@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import Button from "../components/Button"
 import InputLabel from "../components/InputLabel"
 import Notifications from "../components/Notifications"
-import OnLoadingPage from "../components/OnLoadingPage"
+import LoadingPage from "../components/LoadingPage"
 
 
 
@@ -12,8 +12,11 @@ import useAuth from "../hooks/useAuth"
 
 const Login = () => {
     const [notification, setNotifications] = useState({})
-    const history = useHistory()
-    const location = history.location
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    //console.log()
 
     let { from } = location.state || { from: { pathname: "/" } }
 
@@ -25,18 +28,20 @@ const Login = () => {
         remember: true,
     })
     useEffect(() => {
-        if (isLogged) history.replace(from)
-    }, [isLogged, history, from])
+        console.log(from)
+        if (isLogged) {
+            navigate(from.pathname, { replace: true })
+        }
+    }, [isLogged, from])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setNotifications({ type: "hidden" })
+        setNotifications({ type: "" })
         login.mutate(dataLogin, {
-            //onSuccess: () => history.replace(from),
             onError: (error, variables, contexto) => {
                 setNotifications({
                     type: "error",
-                    responseError: error,
+                    errorResponse: error.response,
                 })
             },
         })
@@ -48,13 +53,13 @@ const Login = () => {
         setDataLogin({ ...dataLogin, [target.name]: value })
     }
 
-    if (userData.isLoading) return <OnLoadingPage />
+    if (userData.isLoading) return <LoadingPage />
 
     return (
         <div className="py-content flex items-center justify-center  px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <div>
-                    <h2 className="mt-6 text-center text-lg font-bold">Inicie sesión con su correo electrónico y contraseña</h2>
+                    <h2 className="mt-6 text-lg font-bold">Inicie sesión con su correo electrónico y contraseña</h2>
                 </div>
                 <Notifications {...notification} />
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -102,11 +107,11 @@ const Login = () => {
                         </div>
                     </div>
                     <div>
-                        <Button 
-                            height="h-9"
+                        <Button
+
                             isLoading={login.isLoading}
                             textLoading="Iniciando..."
-                            styleClass="lg:w-full text-white bg-orange-600 "
+                            styleClass="w-full text-white bg-orange-600 "
                         >
                             Iniciar sesión
                         </Button>

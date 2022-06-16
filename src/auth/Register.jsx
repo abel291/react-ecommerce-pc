@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import Button from "../components/Button"
 import InputLabel from "../components/InputLabel"
 import Notifications from "../components/Notifications"
 import useAuth from "../hooks/useAuth"
 
 const Register = () => {
-    const history = useHistory()
+    let navigate = useNavigate();
+    let location = useLocation();
     const [notification, setNotifications] = useState({})
     let email = "dani" + Math.floor(Math.random() * 101) + "@dani.com"
 
@@ -31,20 +32,21 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setNotifications({ type: "hidden" })
+        setNotifications({ type: "" })
         register.mutate(dataRegister, {
-            //onSuccess: () => history.replace(from),
+
             onError: (error, variables, contexto) => {
                 setNotifications({
                     type: "error",
-                    responseError: error,
+                    errorResponse: error.response,
                 })
             },
         })
     }
     useEffect(() => {
-        if (isLogged) history.replace("/")
-    }, [isLogged, history])
+        if (isLogged) navigate("/", { replace: true })
+
+    }, [isLogged, location])
 
     return (
         <div className="py-content flex items-center justify-center  px-4 sm:px-6 lg:px-8">

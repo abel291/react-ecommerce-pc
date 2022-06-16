@@ -3,25 +3,29 @@ import { Transition } from "@headlessui/react"
 import { CheckCircleIcon, XCircleIcon, XIcon } from "@heroicons/react/solid"
 import { useEffect, useState } from "react"
 import ValidaterErrors from "./ValidateError"
-const Notifications = ({ responseError="", type = "hidden", errors, title = "Operacion exitosa", subTitle = "", scrollUp = true }) => {
+const Notifications = ({
+    errorResponse = "",
+    type = "",
+    title = "Operacion exitosa",
+    subTitle = "",
+    scrollUp = true }) => {
     const [show, setShow] = useState(false)
     const [error, setError] = useState(null)
-    
-    
+
     useEffect(() => {
-        
+
         if (type === "ok" || type === "error") {
             setShow(true)
-            // if (scrollUp) {
-            //     document.getElementById("root").scrollIntoView({ behavior: "smooth" })
-            // }
-            if(responseError){
-                setError(ValidaterErrors(responseError.response))
+            if (scrollUp) {
+                document.getElementById("root").scrollIntoView({ behavior: "smooth" })
             }
-           
+            if (errorResponse) {
+                setError(ValidaterErrors(errorResponse))
+            }
+
         }
 
-    }, [type,scrollUp,responseError])
+    }, [type, scrollUp, errorResponse])
     return (
         <Transition
             show={show}
@@ -32,6 +36,7 @@ const Notifications = ({ responseError="", type = "hidden", errors, title = "Ope
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
         >
+            
             {type === "ok" && (
                 <div className="bg-green-100 p-2 md:p-4 flex items-start space-x-2 rounded-md">
                     <div>
@@ -39,7 +44,7 @@ const Notifications = ({ responseError="", type = "hidden", errors, title = "Ope
                     </div>
                     <div className="text-green-700 flex-grow">
                         <span className="font-semibold block text-green-600">{title}</span>
-                        <span className="text-green-600">
+                        <span className="text-green-600  font-light">
                             {subTitle}
                         </span>
                     </div>
@@ -49,6 +54,7 @@ const Notifications = ({ responseError="", type = "hidden", errors, title = "Ope
                     </button>
                 </div>
             )}
+
             {type === "error" && (
                 <div className="flex bg-red-100 rounded-md p-4 text-sm my-4">
                     <div>
