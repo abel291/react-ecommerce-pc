@@ -13,8 +13,8 @@ import SectionsHome from "./SectionsHome"
 const Home = () => {
     const { isLoading, error, data: home } = usePage("home")
     const { data } = useData()
-    
-    
+
+
     if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
@@ -24,25 +24,29 @@ const Home = () => {
             <div className="container">
                 <div className="py-content grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 ">
                     <div className="col-span-1 md:col-span-2 ">
-                        <CarouselBanners images={home.banners} path="/img/home/" />
+                        <CarouselBanners images={home.banners.carousel} />
                     </div>
 
                     <div>
-                        <img
-                            className="h-full mx-auto object-cover w-full rounded-lg overflow-hidden"
-                            src="/img/home/banner-home-9.jpg"
-                            alt="carousel banner-home-9"
-                        />
+                        <a href={home.banners.left.path} target="blank">
+                            <img
+                                className="h-full mx-auto object-cover w-full rounded-lg overflow-hidden"
+                                src={home.banners.left.img}
+                                alt={home.banners.left.alt}
+                            />
+                        </a>
                     </div>
                     <div>
-                        <img
-                            className="h-full mx-auto object-cover w-full rounded-lg overflow-hidden"
-                            src="/img/home/banner-home-10.jpg"
-                            alt="carousel banner-home-10"
-                        />
+                        <a href={home.banners.right.path} target="blank">
+                            <img
+                                className="h-full mx-auto object-cover w-full rounded-lg overflow-hidden"
+                                src={home.banners.right.img}
+                                alt={home.banners.right.alt}
+                            />
+                        </a>
                     </div>
                 </div>
-                
+
 
                 <SectionsHome title={"Destacados"}>
                     <div className="">

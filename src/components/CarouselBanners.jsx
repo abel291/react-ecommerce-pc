@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline"
 
-const CarouselBanners = ({ images, path }) => {
+const CarouselBanners = ({ images, path="" }) => {
     return (
         <div className="relative">
             <Swiper
