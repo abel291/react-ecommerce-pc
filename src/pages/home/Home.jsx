@@ -14,7 +14,6 @@ const Home = () => {
     const { isLoading, error, data: home } = usePage("home")
     const { data } = useData()
 
-
     if (isLoading) return <LoadingPage />
 
     if (error) return <PageError />
