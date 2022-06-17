@@ -4,7 +4,7 @@ import Combos from "./pages/combos/Combos"
 import ContactUs from "./pages/contact/ContactUs"
 import FAQPage from "./pages/FAQPage"
 import ShippingDelivery from "./pages/ShippingDelivery"
-import Login from "./auth/Login"
+import ReturnExchanges from "./pages/ReturnExchanges"
 import Home from "./pages/home/Home"
 import Product from "./pages/product/Product"
 import Search from "./pages/search/Search"
@@ -13,7 +13,7 @@ import Register from "./auth/Register"
 import MyAccount from "./auth/MyAccount/MyAccount"
 import Checkout from "./pages/checkout/Checkout"
 import OrderComplete from "./pages/checkout/OrderComplete"
-import ReturnExchanges from "./pages/ReturnExchanges"
+import Login from "./auth/Login"
 
 const routesPublic = [
     { path: "/", Component: Home },
