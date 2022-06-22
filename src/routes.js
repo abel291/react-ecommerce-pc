@@ -18,7 +18,7 @@ import Login from "./auth/Login"
 const routesPublic = [
     { path: "/", Component: Home },
     { path: "/search", Component: Search },
-    {  path: "/product/:id/:slug", Component: Product },
+    { path: "/product/:id/:slug", Component: Product },
     { path: "/offers", Component: Offers },
     { path: "/assemblies", Component: Assemblies },
     { path: "/combos", Component: Combos },
