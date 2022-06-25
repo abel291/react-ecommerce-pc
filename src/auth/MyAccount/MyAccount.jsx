@@ -7,7 +7,8 @@ import useAuth from "../../hooks/useAuth"
 import AccountDetails from "./AccountDetails"
 import ChangePassword from "./ChangePassword"
 import Dashboard from "./Dashboard"
-import Order from "./Order"
+import Orders from "./Orders"
+import OrderDetails from "./OrderDetails"
 
 const MyAccount = () => {
     const { logout } = useAuth()
@@ -76,9 +77,10 @@ const MyAccount = () => {
 
                     <Routes>
                         <Route path="" element={<Dashboard />}></Route>
-                        <Route path="order" element={<Order />}></Route>
+                        <Route path="order" element={<Orders />}></Route>
                         <Route path="account-details" element={<AccountDetails />}></Route>
                         <Route path="change-password" element={<ChangePassword />}></Route>
+                        <Route path="order-details/:code" element={<OrderDetails />}></Route>
                     </Routes>
 
                 </div>

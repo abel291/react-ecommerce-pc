@@ -2,7 +2,7 @@ import Notifications from "../../components/Notifications"
 import LoadingPage from "../../components/LoadingPage"
 import useAuth from "../../hooks/useAuth"
 
-import { formatNumber } from "../../hooks/useData"
+import { formatCurrency } from "../../Helpers/helpers";
 import { useProductsCheckout } from "../../hooks/useProductsCheckout"
 
 const OrderComplete = () => {
@@ -31,7 +31,7 @@ const OrderComplete = () => {
                     </div>
                     <div className="p-3 md:p-5">
                         <span className="text-xs text-gray-500 font-light">Total</span>
-                        <div className="font-semibold text-lg ">{formatNumber(charges.total)}</div>
+                        <div className="font-semibold text-lg ">{formatCurrency(charges.total)}</div>
                     </div>
                     <div className="p-3 md:p-5">
                         <span className="text-xs text-gray-500 font-light">Email</span>
@@ -58,16 +58,16 @@ const OrderComplete = () => {
                                 <td className="px-2 md:px-4 py-3">
                                     {product.name} * {product.quantity}
                                 </td>
-                                <td>{formatNumber(product.total_price_quantity)}</td>
+                                <td>{formatCurrency(product.total_price_quantity)}</td>
                             </tr>
                         ))}
                         <tr>
                             <td className="px-2 md:px-4 py-3 italic font-semibold">Sub-Total</td>
-                            <td className="font-semibold">{formatNumber(charges.sub_total)}</td>
+                            <td className="font-semibold">{formatCurrency(charges.sub_total)}</td>
                         </tr>
                         <tr>
                             <td className="px-2 md:px-4 py-3 italic font-semibold">Envío</td>
-                            <td className="font-semibold">{formatNumber(charges.shipping)}</td>
+                            <td className="font-semibold">{formatCurrency(charges.shipping)}</td>
                         </tr>
                         <tr>
                             <td className="px-2 md:px-4 py-3 italic font-semibold">Metodo de pago</td>
@@ -78,11 +78,11 @@ const OrderComplete = () => {
                                 Estimación de impuestos
                                 <span className=" text-gray-400 font-light text-sm"> ({charges.tax_percent * 100}%)</span>
                             </td>
-                            <td className="font-semibold">{formatNumber(charges.tax_amount)}</td>
+                            <td className="font-semibold">{formatCurrency(charges.tax_amount)}</td>
                         </tr>
                         <tr>
                             <td className="px-2 md:px-4 py-3 italic font-semibold">Order total</td>
-                            <td className="font-semibold">{formatNumber(charges.total)}</td>
+                            <td className="font-semibold">{formatCurrency(charges.total)}</td>
                         </tr>
                     </tbody>
                 </table>

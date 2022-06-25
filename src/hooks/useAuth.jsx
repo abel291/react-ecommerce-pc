@@ -68,7 +68,7 @@ const useAuth = (dispatch) => {
 
     const updateUser = useMutation(
         async (dataUser) => {
-            const response = await apiAuthClient.put("/auth/user/profile-information", { ...dataUser })
+            const response = await apiAuthClient.put("/auth/user/profile-store", { ...dataUser })
             return response
         },
         {
@@ -79,7 +79,7 @@ const useAuth = (dispatch) => {
     )
 
     const updatePassword = useMutation(async (dataPassword) => {
-        const response = await apiAuthClient.put("/auth/user/password", { ...dataPassword })
+        const response = await apiAuthClient.put("/auth/user/password-store", { ...dataPassword })
         return response
     })
 

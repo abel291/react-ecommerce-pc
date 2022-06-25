@@ -7,7 +7,7 @@ import Notifications from "../../components/Notifications"
 
 import useAuth from "../../hooks/useAuth"
 import { useAddProductToCart } from "../../hooks/useCardProducts"
-import { formatNumber } from "../../hooks/useData"
+import { formatCurrency } from "../../Helpers/helpers";
 import { useMutationProductsCheckout } from "../../hooks/useProductsCheckout"
 
 const Feacture = ({ product }) => {
@@ -62,9 +62,9 @@ const Feacture = ({ product }) => {
             <h2 className="font-bold text-2xl md:text-lg">{product.name}</h2>
             <p>{product.description_min}</p>
             <div>
-                {product.offer && <span className="text-xs text-gray-400 line-through">{formatNumber(product.price_default)}</span>}
+                {product.offer && <span className="text-xs text-gray-400 line-through">{formatCurrency(product.price_default)}</span>}
                 <div className="flex items-center">
-                    <div className="font-bold text-2xl inline-block mr-2">{formatNumber(product.price)}</div>
+                    <div className="font-bold text-2xl inline-block mr-2">{formatCurrency(product.price)}</div>
                     {product.offer && <div className="inline-block text-green-500  font-semibold">{product.offer}%</div>}
                 </div>
             </div>

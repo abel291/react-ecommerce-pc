@@ -29,7 +29,7 @@ export const currencyFormat = Intl.NumberFormat("de-DE", {
     maximumFractionDigits: 2,
 })
 
-export const formatNumber = (n) => {
+export const formatCurrency = (n) => {
     n = n ? n : 0 // number NaN = 0
     return "$ " + currencyFormat.format(parseFloat(n))
 }

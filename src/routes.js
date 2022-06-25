@@ -35,6 +35,7 @@ const routesPrivate = [
     { path: "/shopping-carts", Component: ShoppingCarts },
     { path: "/checkout", Component: Checkout },
     { path: "/order-complete", Component: OrderComplete },
+    { path: "/orders", Component: OrderComplete },
 ]
 
 export {

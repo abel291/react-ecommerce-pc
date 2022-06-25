@@ -1,7 +1,7 @@
 import { XIcon } from "@heroicons/react/outline"
 import { Link } from "react-router-dom"
 import { useAddProductToCart, useRemoveProductToCart } from "../../hooks/useCardProducts"
-import { formatNumber } from "../../hooks/useData"
+import { formatCurrency } from "../../Helpers/helpers";
 const ProductsCart = ({ product }) => {
     const addProductToCart = useAddProductToCart()
     const removeProductToCart = useRemoveProductToCart()
@@ -62,13 +62,13 @@ const ProductsCart = ({ product }) => {
                             ))}
                         </select>
                         {product.pivot.quantity > 1 && (
-                            <div className=" text-gray-400 text-xs ml-1 mt-2"> 1 x {formatNumber(product.price)} </div>
+                            <div className=" text-gray-400 text-xs ml-1 mt-2"> 1 x {formatCurrency(product.price)} </div>
                         )}
                     </div>
                 </div>
                 <div className="col-span-6 md:col-span-3">
                     <div className="flex flex-col justify-between items-end h-full">
-                        <span className=" font-bold text-lg">{formatNumber(product.pivot.total_price_quantity)}</span>
+                        <span className=" font-bold text-lg">{formatCurrency(product.pivot.total_price_quantity)}</span>
                         <button onClick={handleClickRemoveItem} className="text-sm text-red-500 text-right font-medium">
                             Remover
                         </button>
